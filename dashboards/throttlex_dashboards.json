@@ -1,0 +1,56 @@
+{
+  "dashboard": {
+    "id": null,
+    "uid": null,
+    "title": "ThrottleX Performance Dashboard",
+    "timezone": "browser",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "Total Requests (Allowed vs Blocked)",
+        "targets": [
+          {
+            "expr": "rate(requests_total[1m])",
+            "legendFormat": "{{client}} {{status}}",
+            "refId": "A"
+          }
+        ],
+        "xaxis": {
+          "mode": "time"
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "Requests/s",
+            "logBase": 1,
+            "min": 0
+          }
+        ]
+      },
+      {
+        "type": "graph",
+        "title": "Rate-Limited Requests Over Time",
+        "targets": [
+          {
+            "expr": "rate(rate_limited_requests_total[1m]) by (client)",
+            "legendFormat": "{{client}}",
+            "refId": "B"
+          }
+        ],
+        "xaxis": {
+          "mode": "time"
+        },
+        "yaxes": [
+          {
+            "format": "short",
+            "label": "Rate-Limited Requests/s",
+            "logBase": 1,
+            "min": 0
+          }
+        ]
+      }
+    ],
+    "refresh": "10s"
+  },
+  "overwrite": true
+}

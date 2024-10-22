@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 1s  # Reduce the scrape interval to 1 second
+
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']  # Scrape Prometheus itself
+
+  - job_name: 'throttlex'
+    static_configs:
+      - targets: ['host.docker.internal:2112']  # Scrape Go app's metrics
